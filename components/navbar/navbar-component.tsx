@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import Logo from "@/components/navbar/logo"
+import Link from "next/link"
 
 type NavigationItem = {
   title: string
@@ -24,25 +25,25 @@ const Navbar = ({ navigationData }: { navigationData: NavigationItem }) => {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-4 py-7 sm:px-6">
         <div className="flex flex-1 items-center gap-8 font-medium text-muted-foreground md:justify-center lg:gap-16">
           {leftItems.map((item) => (
-            <a
+            <Link
               key={item.title}
               href={item.href}
               className="hover:text-primary max-md:hidden"
             >
               {item.title}
-            </a>
+            </Link>
           ))}
-          <a href="#">
+          <Link href="#">
             <Logo className="gap-3 text-foreground" />
-          </a>
+          </Link>
           {rightItems.map((item) => (
-            <a
+            <Link
               key={item.title}
               href={item.href}
               className="hover:text-primary max-md:hidden"
             >
               {item.title}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -62,7 +63,7 @@ const Navbar = ({ navigationData }: { navigationData: NavigationItem }) => {
               <DropdownMenuGroup>
                 {navigationData.map((item, index) => (
                   <DropdownMenuItem key={index}>
-                    <a href={item.href}>{item.title}</a>
+                    <Link href={item.href}>{item.title}</Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuGroup>
