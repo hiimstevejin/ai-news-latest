@@ -2,9 +2,10 @@ import { Geist, Geist_Mono, Noto_Serif } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
+import Navbar from "@/components/navbar/navbar-component"
 
-const notoSerif = Noto_Serif({subsets:['latin'],variable:'--font-serif'});
+const notoSerif = Noto_Serif({ subsets: ["latin"], variable: "--font-serif" })
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -16,6 +17,25 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+const navigationData = [
+  {
+    title: "Home",
+    href: "#",
+  },
+  {
+    title: "Articles",
+    href: "#",
+  },
+  {
+    title: "Source",
+    href: "#",
+  },
+  {
+    title: "About",
+    href: "#",
+  },
+]
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,9 +45,16 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontSans.variable, fontMono.variable, "font-serif", notoSerif.variable)}
+      className={cn(
+        "antialiased",
+        fontSans.variable,
+        fontMono.variable,
+        "font-serif",
+        notoSerif.variable
+      )}
     >
       <body>
+        <Navbar navigationData={navigationData} />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
