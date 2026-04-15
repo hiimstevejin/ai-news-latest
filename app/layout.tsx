@@ -20,19 +20,19 @@ const fontMono = Geist_Mono({
 const navigationData = [
   {
     title: "Home",
-    href: "#",
+    href: "/",
   },
   {
     title: "Articles",
-    href: "#",
+    href: "/articles",
   },
   {
     title: "Source",
-    href: "#",
+    href: "/source",
   },
   {
     title: "About",
-    href: "#",
+    href: "/about",
   },
 ]
 
