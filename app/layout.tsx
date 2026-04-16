@@ -54,8 +54,10 @@ export default function RootLayout({
       )}
     >
       <body>
-        <Navbar navigationData={navigationData} />
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Navbar navigationData={navigationData} />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

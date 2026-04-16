@@ -1,7 +1,8 @@
 "use client"
 
-import { MenuIcon, SearchIcon } from "lucide-react"
+import { MenuIcon, MoonIcon, SearchIcon, SunIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
+import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -23,6 +24,7 @@ type NavigationItem = {
 
 const Navbar = ({ navigationData }: { navigationData: NavigationItem }) => {
   const pathname = usePathname()
+  const { resolvedTheme, setTheme } = useTheme()
   const leftItems = navigationData.slice(0, 2)
   const rightItems = navigationData.slice(2)
 
@@ -70,6 +72,20 @@ const Navbar = ({ navigationData }: { navigationData: NavigationItem }) => {
         </div>
 
         <div className="flex items-center gap-6">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => {
+              setTheme(resolvedTheme === "dark" ? "light" : "dark")
+            }}
+            aria-label={
+              resolvedTheme === "dark"
+                ? "Switch to light mode"
+                : "Switch to dark mode"
+            }
+          >
+            {resolvedTheme === "dark" ? <SunIcon /> : <MoonIcon />}
+          </Button>
           <Button variant="ghost" size="icon">
             <SearchIcon />
             <span className="sr-only">Search</span>
