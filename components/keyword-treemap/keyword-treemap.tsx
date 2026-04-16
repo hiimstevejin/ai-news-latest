@@ -116,6 +116,7 @@ export default function KeywordTreemap({
             {leaves.map((leaf) => {
               const width = leaf.x1 - leaf.x0
               const height = leaf.y1 - leaf.y0
+              const href = `/articles?tag=${encodeURIComponent(leaf.data.name)}`
               const labelFontSize = getLabelFontSize(width, height)
               const valueFontSize = getValueFontSize(labelFontSize)
               const labelY = INNER_PADDING + labelFontSize
@@ -124,15 +125,10 @@ export default function KeywordTreemap({
               const showValue = width > 48 && height > valueY + INNER_PADDING
 
               return (
-                <g
+                <a
                   key={leaf.data.name}
-                  transform={`translate(${leaf.x0}, ${leaf.y0})`}
-                  className="transition-opacity duration-150"
-                  opacity={
-                    hoveredLeafName && hoveredLeafName !== leaf.data.name
-                      ? 0.35
-                      : 1
-                  }
+                  href={href}
+                  aria-label={`View articles tagged ${leaf.data.name}`}
                   onMouseEnter={() => {
                     setHoveredLeafName(leaf.data.name)
                   }}
@@ -140,36 +136,46 @@ export default function KeywordTreemap({
                     setHoveredLeafName(null)
                   }}
                 >
-                  <rect
-                    width={width}
-                    height={height}
-                    fill={colorScale(leaf.data.name)}
-                    rx={4}
-                  />
-                  {showLabel ? (
-                    <text
-                      x={INNER_PADDING}
-                      y={labelY}
-                      fill="white"
-                      fontSize={labelFontSize}
-                      fontWeight={600}
-                      pointerEvents="none"
-                    >
-                      {leaf.data.name}
-                    </text>
-                  ) : null}
-                  {showValue ? (
-                    <text
-                      x={INNER_PADDING}
-                      y={valueY}
-                      fill="rgba(255,255,255,0.8)"
-                      fontSize={valueFontSize}
-                      pointerEvents="none"
-                    >
-                      {leaf.value}
-                    </text>
-                  ) : null}
-                </g>
+                  <g
+                    transform={`translate(${leaf.x0}, ${leaf.y0})`}
+                    className="cursor-pointer transition-opacity duration-150"
+                    opacity={
+                      hoveredLeafName && hoveredLeafName !== leaf.data.name
+                        ? 0.35
+                        : 1
+                    }
+                  >
+                    <rect
+                      width={width}
+                      height={height}
+                      fill={colorScale(leaf.data.name)}
+                      rx={4}
+                    />
+                    {showLabel ? (
+                      <text
+                        x={INNER_PADDING}
+                        y={labelY}
+                        fill="white"
+                        fontSize={labelFontSize}
+                        fontWeight={600}
+                        pointerEvents="none"
+                      >
+                        {leaf.data.name}
+                      </text>
+                    ) : null}
+                    {showValue ? (
+                      <text
+                        x={INNER_PADDING}
+                        y={valueY}
+                        fill="rgba(255,255,255,0.8)"
+                        fontSize={valueFontSize}
+                        pointerEvents="none"
+                      >
+                        {leaf.value}
+                      </text>
+                    ) : null}
+                  </g>
+                </a>
               )
             })}
           </g>
