@@ -27,8 +27,8 @@ const navigationData = [
     href: "/articles",
   },
   {
-    title: "Source",
-    href: "/source",
+    title: "Sources",
+    href: "/sources",
   },
   {
     title: "About",
