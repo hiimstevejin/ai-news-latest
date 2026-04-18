@@ -1,5 +1,11 @@
 <br />
 <div align="center">
+  <img
+    src="public/Screenshot%202026-04-18%20at%2017.44.29.png"
+    alt="AI News screenshot"
+    width="100%"
+  />
+
   <h3 align="center">AI News</h3>
 
   <p align="center">
